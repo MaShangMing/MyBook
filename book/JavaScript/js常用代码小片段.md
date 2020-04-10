@@ -2,7 +2,7 @@
 
 如果数组所有元素满足函数条件，则返回true。调用时，如果省略第二个参数，则默认传递布尔值。
 
-```
+```js
 const all = (arr, fn = Boolean) => arr.every(fn);
 
 all([4, 2, 3], x => x > 1); // true
@@ -565,7 +565,7 @@ httpsRedirect(); // If you are on http://mydomain.com, you are redirected to htt
 
 此代码可以返回数组中某个值对应的所有索引值，如果不包含该值，则返回一个空数组。
 
-```
+```js
 const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
 
 indexOfAll([1, 2, 3, 1, 2, 3], 1); // [0,3]
@@ -620,7 +620,7 @@ intersection([1, 2, 3], [4, 3, 2]); // [2, 3]
 
 按照给定的函数处理需要对比的数组元素，然后根据处理后的数组，找出交集，最后从第一个数组中将对应的元素输出。
 
-```
+```js
 const intersectionBy = (a, b, fn) => {
   const s = new Set(b.map(fn));
   return a.filter(x => s.has(fn(x)));
@@ -633,7 +633,7 @@ intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor); // [2.1]
 
 按照给定的函数对比两个数组的差异，然后找出交集，最后从第一个数组中将对应的元素输出。
 
-```
+```js
 const intersectionWith = (a, b, comp) => a.filter(x => b.findIndex(y => comp(x, y)) !== -1);
 
 intersectionWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0, 3.9], (a, b) => Math.round(a) === Math.round(b)); // [1.5, 3, 0]
@@ -643,7 +643,7 @@ intersectionWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0, 3.9], (a, b) => Math.round(a) 
 
 此段代码用于判断数据是否为指定的数据类型，如果是则返回true。
 
-```
+```js
 const is = (type, val) => ![, null].includes(val) && val.constructor === type;
 
 is(Array, [1]); // true
@@ -722,3 +722,15 @@ const isBoolean = val => typeof val === 'boolean';
 isBoolean(null); // false
 isBoolean(false); // true
 ```
+
+64、Object.key(obj)
+
+获取对象的key数组
+
+```js
+let jsonObj = { Name: ‘richard‘, Value: ‘8‘ };
+
+Object.keys(jsonObj); // [ 'Name', 'Value' ]
+Object.keys(jsonObj).length; // 2
+```
+

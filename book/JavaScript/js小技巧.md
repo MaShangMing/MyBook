@@ -10,7 +10,7 @@
 >
 > ❞
 
-```
+```js
 const time1 = "2019-02-14 21:00:00";
 const time2 = "2019-05-01 09:00:00";
 const overtime = time1 > time2;
@@ -19,7 +19,7 @@ const overtime = time1 > time2;
 
 ##### 格式化金钱
 
-```
+```js
 const ThousandNum = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 const money = ThousandNum(20190214);
 // money => "20,190,214"
