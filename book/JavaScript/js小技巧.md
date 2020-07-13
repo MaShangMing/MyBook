@@ -27,7 +27,7 @@ const money = ThousandNum(20190214);
 
 ##### 生成随机ID
 
-```
+```js
 const RandomId = len =>Math.random().toString(36).substr(3, len);
 const id = RandomId(10);
 // id => "jg7zpgiqva"
@@ -35,7 +35,7 @@ const id = RandomId(10);
 
 ##### 生成随机HEX色值
 
-```
+```js
 const RandomColor = () =>"#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
 const color = RandomColor();
 // color => "#f03665"
@@ -43,7 +43,7 @@ const color = RandomColor();
 
 ##### 生成星级评分
 
-```
+```js
 const StartScore = rate =>"★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
 const start = StartScore(3);
 // start => "★★★"
@@ -51,7 +51,7 @@ const start = StartScore(3);
 
 ##### 操作URL查询参数
 
-```
+```js
 const params = new URLSearchParams(location.search.replace(/\?/ig, "")); // location.search = "?name=young&sex=male"
 params.has("young"); // true
 params.get("sex"); // "male"
@@ -67,7 +67,7 @@ params.get("sex"); // "male"
 >
 > ❞
 
-```
+```js
 const num1 = ~~ 1.69;
 const num2 = 1.69 | 0;
 const num3 = 1.69 >> 0;
@@ -76,7 +76,7 @@ const num3 = 1.69 >> 0;
 
 ##### 补零
 
-```
+```js
 const FillZero = (num, len) => num.toString().padStart(len, "0");
 const num = FillZero(169, 5);
 // num => "00169"
@@ -90,7 +90,7 @@ const num = FillZero(169, 5);
 >
 > ❞
 
-```
+```js
 const num1 = +null;
 const num2 = +"";
 const num3 = +false;
@@ -100,14 +100,14 @@ const num4 = +"169";
 
 ##### 时间戳
 
-```
+```js
 const timestamp = +newDate("2019-02-14");
 // timestamp => 1550102400000
 ```
 
 ##### 精确小数
 
-```
+```js
 const RoundNum = (num, decimal) =>Math.round(num * 10 ** decimal) / 10 ** decimal;
 const num = RoundNum(1.69, 1);
 // num => 1.7
@@ -115,7 +115,7 @@ const num = RoundNum(1.69, 1);
 
 ##### 判断奇偶
 
-```
+```js
 const OddEven = num => !!(num & 1) ? "odd" : "even";
 const num = OddEven(2);
 // num => "even"
@@ -123,7 +123,7 @@ const num = OddEven(2);
 
 ##### 取最小最大值
 
-```
+```js
 const arr = [0, 1, 2];
 const min = Math.min(...arr);
 const max = Math.max(...arr);
@@ -132,7 +132,7 @@ const max = Math.max(...arr);
 
 ##### 生成范围随机数
 
-```
+```js
 const RandomNum = (min, max) =>Math.floor(Math.random() * (max - min + 1)) + min;
 const num = RandomNum(1, 10);
 ```
@@ -141,7 +141,7 @@ const num = RandomNum(1, 10);
 
 ##### 短路运算符
 
-```
+```js
 const a = d && 1; // 满足条件赋值：取假运算，从左到右依次判断，遇到假值返回假值，后面不再执行，否则返回最后一个真值
 const b = d || 1; // 默认赋值：取真运算，从左到右依次判断，遇到真值返回真值，后面不再执行，否则返回最后一个假值
 const c = !d; // 取假赋值：单个表达式转换为true则返回false，否则返回true
@@ -155,7 +155,7 @@ const c = !d; // 取假赋值：单个表达式转换为true则返回false，否
 >
 > ❞
 
-```
+```js
 function DataType(tgt, type) {
     const dataType = Object.prototype.toString.call(tgt).replace(/\[object (\w+)\]/, "$1").toLowerCase();
     return type ? dataType === type : dataType;
@@ -169,7 +169,7 @@ DataType({}, "array"); // false
 
 ##### 是否为空数组
 
-```
+```js
 const arr = [];
 const flag = Array.isArray(arr) && !arr.length;
 // flag => true
@@ -177,7 +177,7 @@ const flag = Array.isArray(arr) && !arr.length;
 
 ##### 是否为空对象
 
-```
+```js
 const obj = {};
 const flag = DataType(obj, "object") && !Object.keys(obj).length;
 // flag => true
@@ -185,7 +185,7 @@ const flag = DataType(obj, "object") && !Object.keys(obj).length;
 
 ##### 满足条件时执行
 
-```
+```js
 const flagA = true; // 条件A
 const flagB = false; // 条件B
 (flagA || flagB) && Func(); // 满足A或B时执行
@@ -196,28 +196,28 @@ flagA && !flagB && Func(); // 满足A且不满足B时执行
 
 ##### 为非假值时执行
 
-```
+```js
 const flag = false; // undefined、null、""、0、false、NaN
 !flag && Func();
 ```
 
 ##### 数组不为空时执行
 
-```
+```js
 const arr = [0, 1, 2];
 arr.length && Func();
 ```
 
 ##### 对象不为空时执行
 
-```
+```js
 const obj = { a: 0, b: 1, c: 2 };
 Object.keys(obj).length && Func();
 ```
 
 ##### 函数退出代替条件分支退出
 
-```
+```js
 if (flag) {
     Func();
     returnfalse;
@@ -230,7 +230,7 @@ if (flag) {
 
 ##### switch/case使用区间
 
-```
+```js
 const age = 26;
 switch (true) {
     caseisNaN(age):
@@ -252,7 +252,7 @@ switch (true) {
 
 ##### 克隆数组
 
-```
+```js
 const _arr = [0, 1, 2];
 const arr = [..._arr];
 // arr => [0, 1, 2]
@@ -260,7 +260,7 @@ const arr = [..._arr];
 
 ##### 合并数组
 
-```
+```js
 const arr1 = [0, 1, 2];
 const arr2 = [3, 4, 5];
 const arr = [...arr1, ...arr2];
@@ -269,21 +269,21 @@ const arr = [...arr1, ...arr2];
 
 ##### 去重数组
 
-```
+```js
 const arr = [...new Set([0, 1, 1, null, null])];
 // arr => [0, 1, null]
 ```
 
 ##### 混淆数组
 
-```
+```js
 const arr = [0, 1, 2, 3, 4, 5].slice().sort(() =>Math.random() - .5);
 // arr => [3, 4, 0, 5, 1, 2]
 ```
 
 ##### 清空数组
 
-```
+```js
 const arr = [0, 1, 2];
 arr.length = 0;
 // arr => []
