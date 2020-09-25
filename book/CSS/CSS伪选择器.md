@@ -173,3 +173,22 @@ p[lang|="fr"] {background: yellow;}
 ```
 
 `Div 1` 和 `Div 2` 会被选中，因为他们不是 `p` 元素。
+
+**17、清除浮动的原理**
+
+原理：如果子元素全部浮动，父元素就会塌陷，所以在所有浮动子元素后添加一个没有浮动元素把父元素撑起来，这个元素找不到、不占据空间，不能让它里面有内容，有内容也要隐藏
+
+```css
+.clearfix:after{content:'.';
+　　　　　　　　　　clear:both;
+　　　　　　　　　　display:block;
+　　　　　　　　　　height:0;
+　　　　　　　　　　overflow:hidden;
+　　　　　　　　　　visibility:hidden;
+　　　　　　　　}
+.clearfix:after{zoom：1；}/*解决IE的问题*/
+//visibility：hidden；隐藏元素，但是位置留着
+//display：none；隐藏元素，不占据空间，彻底隐藏
+//after：伪对象选择符
+```
+

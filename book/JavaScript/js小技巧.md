@@ -663,9 +663,9 @@ const [err, res] = await AsyncTo(Func());
 
 ##### 优雅处理多个函数返回值
 
-```
+```js
 function Func() {
-    returnPromise.all([
+    return Promise.all([
         fetch("/user"),
         fetch("/comment")
     ]);

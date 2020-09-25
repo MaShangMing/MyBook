@@ -1501,3 +1501,42 @@ export default{
 }
 </style>
 ```
+
+## 37.VUE防止多次点击，重复请求
+
+1.添加自定义文件 preventReClick.js
+
+```js
+import Vue from 'vue'
+
+const preventReClick = Vue.directive('preventReClick', {
+    inserted: function (el, binding) {
+        el.addEventListener('click', () => {
+            if (!el.disabled) {
+                el.disabled = true
+                setTimeout(() => {
+                    el.disabled = false
+                }, binding.value || 3000)
+            }
+        })
+    }
+});
+
+export { preventReClick }
+```
+
+
+
+2.在main.js中引用
+
+```js
+import preventReClick from './store/preventReClick' //防多次点击，重复提交
+```
+
+3.实现方式。在按钮上添加v-preventReClick
+
+```vue
+<el-button class="common-button" size="small" type="primary" @click="handleSave('form')" v-preventReClick>保 存</el-button>
+```
+
+
