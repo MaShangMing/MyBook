@@ -2,7 +2,7 @@
 
 1.场景:如页面需要导入多个组件,原始写法:
 
-```
+```js
 import titleCom from '@/components/home/titleCom'
 import bannerCom from '@/components/home/bannerCom'
 import cellCom from '@/components/home/cellCom'
@@ -11,7 +11,7 @@ components:{titleCom,bannerCom,cellCom}
 
 2.这样就写了大量重复的代码,利用 require.context 可以写成
 
-```
+```js
 const path = require('path')
 const files = require.context('@/components/home', false, /\.vue$/)
 const modules = {}
@@ -24,7 +24,7 @@ components:modules
 
 这样不管页面引入多少组件,都可以使用这个方法
 
-3.API 方法
+3.API 方法 
 
 ```
 实际上是 webpack 的方法,vue 工程一般基于 webpack,所以可以使用
@@ -41,7 +41,7 @@ regExp: 匹配文件的正则表达式,一般是文件名
 
 1.场景:表格初始进来需要调查询接口 getList(),然后input 改变会重新查询
 
-```
+```vue
 created(){
   this.getList()
 },
@@ -69,7 +69,7 @@ watch: {
 
 3.watch 的 deep 属性,深度监听,也就是监听复杂数据类型
 
-```
+```vue
 watch:{
   inpValObj:{
     handler(newVal,oldVal){
@@ -92,7 +92,7 @@ watch:{
 这个应该非常属性,就是父传子的属性;
 props 值可以是一个数组或对象;
 
-```
+```js
 // 数组:不建议使用
 props:[]
 
@@ -116,7 +116,7 @@ props:{
 
 这个也应该非常常见,触发子组件触发父组件给自己绑定的事件,其实就是子传父的方法
 
-```
+```vue
 // 父组件
 <home @title="title">
 // 子组件
@@ -146,8 +146,8 @@ modules:模块,如果状态过多,可以拆分成模块,最后在入口通过...
 这两个是不常用属性,但是高级用法很常见;
 1.场景如果父传子有很多值那么在子组件需要定义多个解决attrs获取子传父中未在 props 定义的值
 
-```
-// 父组件
+```vue
+ // 父组件
 <home title="这是标题" width="80" height="80" imgUrl="imgUrl"/>
 
 // 子组件
@@ -158,7 +158,7 @@ mounted() {
 
 相对应的如果子组件定义了 props,打印的值就是剔除定义的属性
 
-```
+```js
 props: {
   width: {
     type: String,
@@ -207,7 +207,7 @@ provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直
 并且这对选项需要一起使用;
 以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。
 
-```
+```js
 //父组件:
 provide: { //provide 是一个对象,提供一个属性或方法
   foo: '这是 foo',
@@ -228,7 +228,7 @@ mounted() {
 provide 和 inject 绑定并不是可响应的。这是官方刻意为之的。
 然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的,对象是因为是引用类型
 
-```
+```js
 //父组件:
 provide: { 
   foo: '这是 foo'
@@ -248,7 +248,7 @@ mounted() {
 
 父实例children:子实例
 
-```
+```js
 //父组件
 mounted(){
   console.log(this.$children) 
@@ -262,7 +262,7 @@ mounted(){
 }
 ```
 
-和parent 并不保证顺序，也不是响应式的
+和parent 并不保证顺序，也不是响应式的js
 只能拿到一级父组件和子组件
 
 ## 3.7 $refs
@@ -293,7 +293,7 @@ mounted(){
 在 vue@2.0 的由于违背单项数据流的设计被干掉了;
 在 vue@2.3.0+ 以上版本又重新引入了这个 .sync 修饰符;
 
-```
+```vue
 // 父组件
 <home :title.sync="title" />
 //编译时会被扩展为
@@ -314,7 +314,7 @@ mounted(){
 3.插槽分类:
 A.匿名插槽(也叫默认插槽): 没有命名,有且只有一个;
 
-```
+```vue
 // 父组件
 <todo-list> 
     <template v-slot:default>
@@ -330,7 +330,7 @@ A.匿名插槽(也叫默认插槽): 没有命名,有且只有一个;
 
 B.具名插槽: 相对匿名插槽组件slot标签带name命名的;
 
-```
+```vue
 // 父组件
 <todo-list> 
     <template v-slot:todo>
@@ -345,7 +345,7 @@ B.具名插槽: 相对匿名插槽组件slot标签带name命名的;
 
 C.作用域插槽: 子组件内数据可以被父页面拿到(解决了数据只能从父页面传递给子组件)
 
-```
+```vue
 // 父组件
 <todo-list>
  <template v-slot:todo="slotProps" >
@@ -377,7 +377,7 @@ data() {
 2.类似于 Vuex。但这种方式只适用于极小的项目
 3.原理就是利用和emit 并实例化一个全局 vue 实现数据共享
 
-```
+```js
 // 在 main.js
 Vue.prototype.$eventBus=new Vue()
 
