@@ -392,12 +392,12 @@ this.$eventBus.$on("eventTarget",v=>{
 
 4.可以实现平级,嵌套组件传值,但是对应的事件名eventTarget必须是全局唯一的
 
-## 3.12 broadcast和dispatch
+## 3.12 broadcast和33
 
 vue 1.x 有这两个方法,事件广播和派发,但是 vue 2.x 删除了
 下面是对两个方法进行的封装
 
-```
+```js
 function broadcast(componentName, eventName, params) {
   this.$children.forEach(child => {
     var name = child.$options.componentName;
@@ -436,7 +436,7 @@ export default {
 
 1.方案一
 
-```
+```js
 // 路由定义
 {
   path: '/describe/:id',
@@ -453,7 +453,7 @@ this.$route.params.id
 
 2.方案二
 
-```
+```js
 // 路由定义
 {
   path: '/describe',
@@ -473,7 +473,7 @@ this.$route.params.id
 
 3.方案三
 
-```
+```js
 // 路由定义
 {
   path: '/describe',
@@ -507,7 +507,7 @@ this.$route.query.id
 
 通讯原理实质上是利用Vue.observable实现一个简易的 vuex
 
-```
+```js
 // 文件路径 - /store/store.js
 import Vue from 'vue'
 
@@ -549,7 +549,7 @@ export default {
 
 1.场景:有些代码在 template 里面写会重复很多,所以这个时候 render 函数就有作用啦
 
-```
+```js
 // 根据 props 生成标签
 // 初级
 <template>
@@ -599,7 +599,7 @@ export default {
 1.异步注册组件
 3种方法
 
-```
+```js
 // 工厂函数执行 resolve 回调
 Vue.component('async-webpack-example', function (resolve) {
   // 这个特殊的 `require` 语法将会告诉 webpack

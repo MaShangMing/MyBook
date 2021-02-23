@@ -4,7 +4,7 @@ Vue 自定义指令有全局注册和局部注册两种方式。先来看看注�
 
 批量注册指令，新建 `directives/index.js` 文件
 
-```
+```js
 import copy from './copy'
 import longpress from './longpress'
 // 自定义指令
@@ -24,7 +24,7 @@ export default {
 
 在 `main.js` 引入并调用
 
-```
+```js
 import Vue from 'vue'
 import Directives from './JS/directives'
 Vue.use(Directives)
