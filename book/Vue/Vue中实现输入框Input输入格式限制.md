@@ -4,8 +4,6 @@
 
 在VUE中可以在v-modal后添加修饰符的形式来限制输入，比如：
 
-- 
-
 ```vue
 <input v-model.number="testValue" type="number">
 ```
