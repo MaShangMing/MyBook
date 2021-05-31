@@ -12,7 +12,7 @@
 
 用如下代码做个测试：
 
-```
+```js
 let a = performance.now();
 setTimeout(() => {
   let b = performance.now();
@@ -100,7 +100,7 @@ setTimeout(() => {
 
 实验代码：
 
-```
+```js
 function runtest() {
   var output = document.getElementById('output');
   var outputText = document.createTextNode('');
