@@ -6,7 +6,7 @@
 
 [![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
 
-```
+```js
 var tree=[
   {
     'id': '1',
@@ -59,7 +59,7 @@ var tree=[
 
 [![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
 
-```
+```js
 function deepQuery(tree,id) {
     var isGet = false;
     var retNode = null;
@@ -82,7 +82,7 @@ function deepQuery(tree,id) {
 
 [![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
 
-```
+```js
 var getNode = deepQuery(tree,10102);
 console.log(getNode)
 ```
@@ -91,7 +91,7 @@ console.log(getNode)
 
 [![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
 
-```
+```js
 function breadthQuery(tree, id) {
     var stark = [];
     stark = stark.concat(tree);

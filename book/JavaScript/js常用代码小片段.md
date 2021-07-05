@@ -919,3 +919,416 @@ maxN([1, 2, 3]); // [3]maxN([1, 2, 3], 2); // [3,2]
 const minDate = (...dates) => new Date(Math.min.apply(null, ...dates));
 const array = [  new Date(2017, 4, 13),  new Date(2018, 2, 12),  new Date(2016, 0, 10),  new Date(2016, 0, 9)];minDate(array); // 2016-01-08T22:00:00.000Z
 ```
+
+# **85、minN**
+
+此代码段返回n列表中的最小元素。如果n大于或等于列表的长度，则返回原始列表（按升序排序）。
+
+```
+const minN = (arr, n = 1) => [...arr].sort((a, b) => a - b).slice(0, n);
+minN([1, 2, 3]); // [1]
+minN([1, 2, 3], 2); // [1,2]
+```
+
+# **86、negate** 
+
+此代码段可用于将 not 运算符 ( !) 应用于带有参数的谓词函数。
+
+```
+const negate = func => (...args) => !func(...args);
+[1, 2, 3, 4, 5, 6].filter(negate(n => n % 2 === 0)); // [ 1, 3, 5 ]
+```
+
+# **87、 nodeListToArray**
+
+此代码段可用于将 nodeList 转换为数组。
+
+```
+const nodeListToArray = nodeList => [...nodeList];
+nodeListToArray(document.childNodes); // [ <!DOCTYPE html>, html ]
+```
+
+**88、pad**
+
+如果字符串短于指定长度，则此代码段可用于在字符串的两侧填充指定字符。
+
+```
+const pad = (str, length, char = ' ') =>  str.padStart((str.length + length) / 2, char).padEnd(length, char);
+pad('cat', 8); // '  cat   'pad(String(42), 6, '0'); // '004200'pad('foobar', 3); // 'foobar'
+```
+
+# **89、 radsToDegrees**
+
+此代码段可用于将角度从弧度转换为度数。
+
+```
+const radsToDegrees = rad => (rad * 180.0) / Math.PI;
+radsToDegrees(Math.PI / 2); // 90
+```
+
+# **90、随机生成十六进制颜色代码**
+
+此代码段可用于生成随机的十六进制颜色代码。
+
+```
+const randomHexColorCode = () => {  let n = (Math.random() * 0xfffff * 1000000).toString(16);  return '#' + n.slice(0, 6);};
+randomHexColorCode(); // "#e34155"
+```
+
+# **91、 randomIntArrayInRange**
+
+此代码段可用于生成具有n指定范围内的随机整数的数组。
+
+```
+const randomIntArrayInRange = (min, max, n = 1) =>  Array.from({ length: n }, () => Math.floor(Math.random() * (max - min + 1)) + min);
+randomIntArrayInRange(12, 35, 10); // [ 34, 14, 27, 17, 30, 27, 20, 26, 21, 14 ]
+```
+
+# **92、randomIntegerInRange**
+
+此代码段可用于生成指定范围内的随机整数。
+
+```
+const randomIntegerInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+randomIntegerInRange(0, 5); // 3
+```
+
+# **93、RandomNumberInRange**
+
+此代码段可用于返回指定范围内的随机数。
+
+```
+const randomNumberInRange = (min, max) => Math.random() * (max - min) + min;
+randomNumberInRange(2, 10); // 6.0211363285087005
+```
+
+# **94、ReadFileLines**
+
+此代码段可用于通过从文件中获取行数组来读取文件。
+
+```js
+const fs = require('fs');
+const readFileLines = filename =>  
+	fs    
+        .readFileSync(filename)   
+        .toString('UTF8')   
+        .split('\n');
+let arr = readFileLines('test.txt');console.log(arr); // ['line1', 'line2', 'line3']
+```
+
+# **95、 重定向到一个 URL**
+
+此代码段可用于重定向到指定的 URL。
+
+```
+const redirect = (url, asLink = true) =>  asLink ? (window.location.href = url) : window.location.replace(url);
+redirect('https://google.com');
+```
+
+# **96、反转字符串**
+
+此代码段可用于反转字符串。
+
+```
+const reverseString = str => [...str].reverse().join('');
+reverseString('foobar'); // 'raboof'
+```
+
+# **97、round**
+
+此代码段可用于将数字四舍五入到指定的位数。
+
+```
+const round = (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`);
+round(1.005, 2); // 1.01
+```
+
+# **98、runPromisesInSeries**
+
+此代码段可用于连续运行一系列 Promise。
+
+```js
+const runPromisesInSeries = ps => ps.reduce((p, next) => p.then(next), Promise.resolve());
+const delay = d => new Promise(r => setTimeout(r, d));
+runPromisesInSeries([() => delay(1000), () => delay(2000)]); // Executes each promise sequentially, taking a total of 3 seconds to complete
+```
+
+# **99、sample**
+
+此代码段可用于从数组中获取随机数。
+
+```
+const sample = arr => arr[Math.floor(Math.random() * arr.length)];
+sample([3, 7, 9, 11]); // 9
+```
+
+# **100、sampleSize**
+
+此代码段可用于从数组中的唯一位置获取 n 个随机元素，直至数组的大小。 使用 Fisher-Yates 算法对数组中的元素进行混洗。
+
+```
+const sampleSize = ([...arr], n = 1) => {  let m = arr.length;  while (m) {    const i = Math.floor(Math.random() * m--);    [arr[m], arr[i]] = [arr[i], arr[m]];  }  return arr.slice(0, n);};
+sampleSize([1, 2, 3], 2); // [3,1]sampleSize([1, 2, 3], 4); // [2,3,1]
+```
+
+# **101、scrollToTop**
+
+此代码段可用于平滑滚动到当前页面的顶部。
+
+```js
+const scrollToTop = () => {  
+    const c = document.documentElement.scrollTop || document.body.scrollTop;  
+    if (c > 0) {    
+        window.requestAnimationFrame(scrollToTop);
+        window.scrollTo(0, c - c / 8);  
+    }
+};
+scrollToTop();
+```
+
+# **102、serializeCookie**
+
+此代码段可用于将 cookie 名称-值对序列化为 Set-Cookie 标头字符串。
+
+```
+const serializeCookie = (name, val) => `${encodeURIComponent(name)}=${encodeURIComponent(val)}`;
+serializeCookie('foo', 'bar'); // 'foo=bar'
+```
+
+# **103、setStyle**
+
+此代码段可用于为特定元素设置 CSS 规则的值。
+
+```
+const setStyle = (el, ruleName, val) => (el.style[ruleName] = val);
+setStyle(document.querySelector('p'), 'font-size', '20px');// The first <p> element on the page will have a font-size of 20px
+```
+
+# **104、shallowClone**
+
+此代码段可用于创建对象的浅层克隆。
+
+```js
+const shallowClone = obj => Object.assign({}, obj);
+const a = { x: true, y: 1 };
+const b = shallowClone(a); // a !== b
+```
+
+# **105、Show**
+
+此代码段可用于显示指定的所有元素。
+
+```
+const show = (...el) => [...el].forEach(e => (e.style.display = ''));
+show(...document.querySelectorAll('img')); // Shows all <img> elements on the page
+```
+
+# **106、shuffle**
+
+此代码段可用于使用Fisher-Yates 算法随机排序数组的元素。
+
+```js
+const shuffle = ([...arr]) => {  
+    let m = arr.length;  
+    while (m) {    
+        const i = Math.floor(Math.random() * m--);    
+        [arr[m], arr[i]] = [arr[i], arr[m]]; 
+    }  
+    return arr;
+};
+const foo = [1, 2, 3];
+shuffle(foo); // [2, 3, 1], foo = [1, 2, 3]
+```
+
+# **107、similarity**
+
+此代码段可用于返回出现在两个数组中的元素数组。
+
+```
+const similarity = (arr, values) => arr.filter(v => values.includes(v));
+similarity([1, 2, 3], [1, 2, 4]); // [1, 2]
+```
+
+# **108、sleep**
+
+此代码段可用于通过将异步函数置于睡眠状态来延迟其执行。
+
+```js
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+async function sleepyWork() {  
+    console.log("I'm going to sleep for 1 second.");  
+    await sleep(1000);  
+    console.log('I woke up after 1 second.');
+}
+```
+
+# **109、smoothScroll**
+
+此代码段可用于将调用它的元素平滑地滚动到浏览器窗口的可见区域。
+
+```
+const smoothScroll = element =>  document.querySelector(element).scrollIntoView({    behavior: 'smooth'  });
+smoothScroll('#fooBar'); // scrolls smoothly to the element with the id fooBarsmoothScroll('.fooBar'); // scrolls smoothly to the first element with a class of fooBar
+```
+
+# **110、 sortCharactersInString**
+
+此代码段可用于按字母顺序对字符串中的字符进行排序。
+
+```
+const sortCharactersInString = str => [...str].sort((a, b) => a.localeCompare(b)).join('');
+sortCharactersInString('cabbage'); // 'aabbceg'
+```
+
+# **111、splitLines**
+
+此代码段可用于将多行字符串拆分为行数组。
+
+```
+const splitLines = str => str.split(/\r?\n/);
+splitLines('This\nis a\nmultiline\nstring.\n'); // ['This', 'is a', 'multiline', 'string.' , '']
+```
+
+# **112、stripHTMLTags**
+
+此代码段可用于从字符串中删除 HTML/XML 标记。
+
+```
+const stripHTMLTags = str => str.replace(/<[^>]*>/g, '');
+stripHTMLTags('<p><em>lorem</em> <strong>ipsum</strong></p>'); // 'lorem ipsum'
+```
+
+# **113、sum**
+
+此代码段可用于查找两个或多个数字或数组的总和。
+
+```
+const sum = (...arr) => [...arr].reduce((acc, val) => acc + val, 0);
+sum(1, 2, 3, 4); // 10sum(...[1, 2, 3, 4]); // 10
+```
+
+# **114、tail**
+
+此代码段可用于获取包含数组中除第一个元素之外的所有元素的数组。如果数组只有一个元素，那么将返回具有该元素的数组。
+
+```
+const tail = arr => (arr.length > 1 ? arr.slice(1) : arr);
+tail([1, 2, 3]); // [2,3]tail([1]); // [1]
+```
+
+# **115、take**
+
+此代码段可用于获取从开头删除 n 个元素的数组。
+
+```
+const take = (arr, n = 1) => arr.slice(0, n);
+take([1, 2, 3], 5); // [1, 2, 3]take([1, 2, 3], 0); // []
+```
+
+# **116、takeRight**
+
+此代码段可用于获取n 从末尾删除元素的数组。
+
+```
+const takeRight = (arr, n = 1) => arr.slice(arr.length - n, arr.length);
+takeRight([1, 2, 3], 2); // [ 2, 3 ]takeRight([1, 2, 3]); // [3]
+```
+
+# **117、timeTaken**
+
+此代码段可用于找出执行函数所需的时间。
+
+```
+const timeTaken = callback => {  console.time('timeTaken');  const r = callback();  console.timeEnd('timeTaken');  return r;};
+timeTaken(() => Math.pow(2, 10)); // 1024, (logged): timeTaken: 0.02099609375ms
+```
+
+# **118、times**
+
+此代码段可用于迭代回调n 时间。
+
+```
+const times = (n, fn, context = undefined) => {  let i = 0;  while (fn.call(context, i) !== false && ++i < n) {}};
+var output = '';times(5, i => (output += i));console.log(output); // 01234
+```
+
+# **119、 toCurrency**
+
+此代码段可用于格式化数字（如货币）。
+
+```
+const toCurrency = (n, curr, LanguageFormat = undefined) =>  Intl.NumberFormat(LanguageFormat, { style: 'currency', currency: curr }).format(n);
+toCurrency(123456.789, 'EUR'); // €123,456.79  | currency: Euro | currencyLangFormat: LocaltoCurrency(123456.789, 'USD', 'en-us'); // $123,456.79  | currency: US Dollar | currencyLangFormat: English (United States)toCurrency(123456.789, 'USD', 'fa'); // ۱۲۳٬۴۵۶٫۷۹ ؜$ | currency: US Dollar | currencyLangFormat: FarsitoCurrency(322342436423.2435, 'JPY'); // ¥322,342,436,423 | currency: Japanese Yen | currencyLangFormat: LocaltoCurrency(322342436423.2435, 'JPY', 'fi'); // 322 342 436 423 ¥ | currency: Japanese Yen | currencyLangFormat: Finnish
+```
+
+# **120、 toDecimalMark**
+
+此代码段使用toLocaleString() 函数将浮点运算转换为小数点形式，方法是使用数字生成逗号分隔的字符串。
+
+```
+const toDecimalMark = num => num.toLocaleString('en-US');
+toDecimalMark(12305030388.9087); // "12,305,030,388.909"
+```
+
+# **121、toggleClass**
+
+此代码段可用于切换元素的类。
+
+```
+const toggleClass = (el, className) => el.classList.toggle(className);
+toggleClass(document.querySelector('p.special'), 'special'); // The paragraph will not have the 'special' class anymore
+```
+
+# **122、tomorrow**
+
+此代码段可用于获取明天日期的字符串表示。
+
+```
+const tomorrow = () => {  let t = new Date();  t.setDate(t.getDate() + 1);  return t.toISOString().split('T')[0];};
+tomorrow(); // 2019-09-08 (if current date is 2018-09-08)
+```
+
+# **123、unfold**
+
+此代码段可用于使用迭代器函数和初始种子值构建数组。
+
+```
+const unfold = (fn, seed) => {  let result = [],    val = [null, seed];  while ((val = fn(val[1]))) result.push(val[0]);  return result;};
+var f = n => (n > 50 ? false : [-n, n + 10]);unfold(f, 10); // [-10, -20, -30, -40, -50]
+```
+
+# **124、union**
+
+此代码段可用于查找两个数组的并集，从而生成一个包含来自两个数组但不重复的元素的数组。
+
+```
+const union = (a, b) => Array.from(new Set([...a, ...b]));
+union([1, 2, 3], [4, 3, 2]); // [1,2,3,4]
+```
+
+# **125、uniqueElements**
+
+这段代码使用 ES6 Set 和 ...rest 运算符来只获取每个元素一次。
+
+```
+const uniqueElements = arr => [...new Set(arr)];
+uniqueElements([1, 2, 2, 3, 4, 4, 5]); // [1, 2, 3, 4, 5]
+```
+
+# **126、validateNumber**
+
+此代码段可用于检查值是否为数字。
+
+```
+const validateNumber = n => !isNaN(parseFloat(n)) && isFinite(n) && Number(n) == n;
+validateNumber('10'); // true
+```
+
+# **127、words**
+
+此代码段将字符串转换为单词数组。
+
+```
+const words = (str, pattern = /[^a-zA-Z-]+/) => str.split(pattern).filter(Boolean);
+words('I love javaScript!!'); // ["I", "love", "javaScript"]words('python, javaScript & coffee'); // ["python", "javaScript", "coffee"]
+```

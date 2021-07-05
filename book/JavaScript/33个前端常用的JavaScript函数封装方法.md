@@ -171,8 +171,7 @@ const ajax = function(conf) { // ajax操作
         senData = data  
     }  try {    
         xhr = new ActiveXObject('microsoft.xmlhttp') // IE内核系列浏览器  
-    } 
-        catch (e1) {    
+    }  catch (e1) {    
             try {      
                 xhr = new XMLHttpRequest() // 非IE内核浏览器    
             } catch (e2) {      
