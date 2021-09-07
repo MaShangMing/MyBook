@@ -159,7 +159,7 @@ capitalize('fooBar', true); // 'FooBar'
 
 将一个句子中每个单词首字母转换成大写字母，这里中要运用了正则表达式进行替换。
 
-```
+```js
 const capitalizeEveryWord = str => str.replace(/\b[a-z]/g, char => char.toUpperCase());
 
 capitalizeEveryWord('hello world!'); // 'Hello World!'
